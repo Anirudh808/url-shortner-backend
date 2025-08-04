@@ -9,6 +9,17 @@ const DATA_FILE = path.join(__dirname, "urls.json");
 
 app.use(bodyParser.json());
 
+// Allow CORS from any domain
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+  next();
+});
+
 // Helper to validate URL
 function isValidUrl(url) {
   try {
