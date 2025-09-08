@@ -39,4 +39,39 @@ This backend application allows users to shorten long URLs and retrieve the orig
    npm install
 
 3. **Configure environment**
-   -Create a ```.env``` file (if applicable) or update config.js directly with your MongoDB connection string.
+   - Create a ```.env``` file (if applicable) or update config.js directly with your MongoDB connection string.
+  
+##📫 API Endpoints
+
+###POST /shorten
+
+**Description: Shortens a long URL**
+```json
+Request Body:
+
+{
+  "url": "https://example.com/some/long/url"
+}
+```
+
+**Response:**
+```json
+{
+  "shortId": "abc123"
+}
+```
+
+###GET /:shortId
+
+**Description: Redirects to the original long URL.**
+
+**Example:**
+
+- If you access http://localhost:3000/abc123, it will redirect to the original long URL stored with abc123.
+
+**Error Response:**
+```json
+{
+  "message": "URL not found"
+}
+```
